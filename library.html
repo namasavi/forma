@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My notes — Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+</head>
+<body data-page="library">
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">f.</span><span>forma</span></a><nav class="main-nav" aria-label="Main navigation"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="workspace.html">Workspace</a><a class="nav-link active" href="library.html">My notes</a><a class="nav-link" href="about.html">How it works</a></nav><div class="header-actions"><button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode">◐</button><a class="button button-primary button-small" href="workspace.html">Write a note ＋</a></div></header>
+  <main class="wrap standard-page">
+    <section class="page-heading library-heading"><div><p class="eyebrow">YOUR PERSONAL ARCHIVE</p><h1>Thoughts, <em>collected.</em></h1><p class="muted">Notes saved in this browser, ready to reopen and keep shaping.</p></div><div class="library-search-wrap"><label class="visually-hidden" for="librarySearch">Search notes</label><input id="librarySearch" type="search" placeholder="Search your notes…"><span>⌕</span></div></section>
+    <div class="library-toolbar"><span id="libraryCount">0 notes</span><button class="text-button" id="sortNotes" type="button">Sort: Recently edited ↓</button></div>
+    <section id="noteGrid" class="note-grid" aria-live="polite"></section>
+    <section class="empty-state" id="emptyState"><div class="empty-symbol">✳</div><h2>A fresh page awaits.</h2><p>Start a note and it will appear here automatically.</p><a class="button button-primary" href="workspace.html">Start writing →</a></section>
+    <p class="storage-note">Your notes are stored in this browser, not synced to an account. Export important notes as Markdown to keep a backup.</p>
+  </main>
+  <footer class="site-footer wrap"><a class="brand footer-brand" href="index.html"><span class="brand-mark">f.</span><span>forma</span></a><span>A quiet place to think.</span><span>© <span data-year></span> Forma Notes</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
