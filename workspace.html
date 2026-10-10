@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Workspace — Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="workspace">
+  <header class="site-header app-header">
+    <a class="brand" href="index.html"><span class="brand-mark">f.</span><span>forma</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a><a class="nav-link active" href="workspace.html">Workspace</a><a class="nav-link" href="library.html">My notes</a><a class="nav-link" href="about.html">How it works</a>
+    </nav>
+    <div class="header-actions">
+      <span class="save-indicator"><span class="status-dot"></span><span id="saveText">Saved locally</span></span>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    </div>
+  </header>
+
+  <main class="workspace-main wrap">
+    <div class="page-heading workspace-heading">
+      <div><p class="eyebrow">YOUR PRIVATE WORKSPACE</p><h1>Let it <em>take shape.</em></h1><p class="muted">Write on the left. Your notes appear as editable-looking blocks on the right. Edit the original text anytime.</p></div>
+      <div class="workspace-actions">
+        <button class="button button-secondary button-small" id="newNoteButton" type="button">＋ New note</button>
+        <button class="button button-secondary button-small" id="importButton" type="button">Import .md</button>
+        <button class="button button-secondary button-small" id="exportButton" type="button">Export .md</button>
+        <input class="visually-hidden" type="file" id="fileInput" accept=".md,.markdown,.txt,text/plain,text/markdown">
+      </div>
+    </div>
+
+    <div class="document-bar">
+      <label for="documentName">NOTE TITLE</label>
+      <input id="documentName" class="document-name-input" maxlength="120" value="My notes" autocomplete="off" aria-label="Note title">
+      <span class="document-separator"></span>
+      <span id="wordCount" class="small-muted">0 words</span>
+      <span class="save-dot"></span><span id="lastSaved" class="small-muted">Saved in this browser</span>
+    </div>
+
+    <div class="workspace-grid">
+      <section class="panel source-panel" aria-labelledby="sourceHeading">
+        <div class="panel-heading"><div><p class="eyebrow">01 / WRITE</p><h2 id="sourceHeading">Your writing</h2></div><span class="tiny-label">PLAIN TEXT + MARKDOWN</span></div>
+        <div class="source-toolbar">
+          <span>EDITOR</span>
+          <div class="tool-buttons">
+            <button type="button" data-insert="**bold text**" title="Insert bold text"><strong>B</strong></button>
+            <button type="button" data-insert="*italic text*" title="Insert italic text"><i>I</i></button>
+            <button type="button" data-insert="\n- List item" title="Insert a bullet list">☷</button>
+            <button type="button" data-insert="\n---\n\n## New section\nWrite here." title="Insert a note separator">＋ Section</button>
+          </div>
+        </div>
+        <textarea id="noteInput" spellcheck="false" aria-label="Write your notes here" placeholder="Start writing your thoughts here..."></textarea>
+        <div class="source-footer"><span>Put <code>---</code> on its own line to create a new note block.</span><button class="text-button danger-text" id="clearButton" type="button">Clear note</button></div>
+      </section>
+
+      <section class="panel rendered-panel" aria-labelledby="renderedHeading">
+        <div class="panel-heading"><div><p class="eyebrow">02 / ORGANIZE</p><h2 id="renderedHeading">Your note blocks</h2></div><span class="live-pill"><span></span> LIVE</span></div>
+        <div class="render-toolbar"><span id="blockCount">1 block</span><label class="view-toggle"><input id="compactToggle" type="checkbox"><span></span> Compact view</label></div>
+        <div id="noteBlocks" class="note-blocks" aria-live="polite"></div>
+        <div class="embed-hint"><span class="embed-hint-icon">↗</span><div><strong>Want this inside Notion?</strong><p>Publish the site to a public HTTPS URL first, then use Notion’s <b>Embed</b> block. See <a href="about.html#notion">the embed guide</a>.</p></div></div>
+      </section>
+    </div>
+    <div class="workspace-footnote"><span>⌘ / Ctrl + S to save</span><span>Local autosave is enabled · Export important notes as a backup</span></div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

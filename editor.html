@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ee">
+  <title>Studio — Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="editor">
+  <header class="site-header app-header">
+    <a class="brand" href="index.html"><span class="brand-mark">f.</span><span>forma</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a><a class="nav-link active" href="editor.html">Editor</a><a class="nav-link" href="library.html">My library</a><a class="nav-link" href="about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <span class="save-indicator"><span class="status-dot"></span><span id="saveText">Saved locally</span></span>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    </div>
+  </header>
+
+  <main class="editor-main wrap">
+    <div class="page-heading editor-heading">
+      <div><p class="eyebrow">FORMA STUDIO</p><h1>Your story, <em>in slides.</em></h1><p class="muted">Separate slides with a line containing three dashes: <code>---</code></p></div>
+      <div class="editor-actions">
+        <button class="button button-secondary button-small" id="newProjectButton" type="button">＋ New</button>
+        <button class="button button-secondary button-small" id="importButton" type="button">Import .md</button>
+        <button class="button button-secondary button-small" id="exportButton" type="button">Export .md</button>
+        <button class="button button-primary button-small" id="presentButton" type="button">Present ↗</button>
+        <input class="visually-hidden" type="file" id="fileInput" accept=".md,.markdown,.txt,text/plain,text/markdown">
+      </div>
+    </div>
+
+    <div class="editor-workspace">
+      <section class="work-panel writing-panel" aria-labelledby="writeHeading">
+        <div class="panel-heading"><div><p class="eyebrow">01 / WRITE</p><h2 id="writeHeading">Your content</h2></div><span class="tiny-label" id="wordCount">0 words</span></div>
+        <div class="editor-title-row"><label for="projectName">Project name</label><input id="projectName" class="project-name-input" maxlength="100" value="Untitled presentation" autocomplete="off"></div>
+        <div class="editor-tools"><span>MARKDOWN</span><div class="tool-buttons"><button type="button" data-insert="**bold text**" title="Insert bold">B</button><button type="button" data-insert="*italic text*" title="Insert italic"><i>I</i></button><button type="button" data-insert="\n- List item" title="Insert list">☷</button><button type="button" data-insert="\n---\n# New slide\nAdd your content here." title="Add slide">＋ Slide</button></div></div>
+        <textarea id="markdownInput" spellcheck="false" aria-label="Markdown content editor" placeholder="# Your first slide&#10;Start writing here..."></textarea>
+        <div class="editor-footer"><span>Tip: use <code>---</code> to create a new slide.</span><button class="text-button danger-text" type="button" id="clearButton">Clear content</button></div>
+      </section>
+
+      <section class="work-panel preview-panel" aria-labelledby="previewHeading">
+        <div class="panel-heading"><div><p class="eyebrow">02 / PREVIEW</p><h2 id="previewHeading">Live preview</h2></div><span class="live-pill"><span></span> LIVE</span></div>
+        <div class="preview-controls"><label for="slideTheme">Slide style</label><select id="slideTheme"><option value="minimal">Paper / Minimal</option><option value="dark">Midnight</option><option value="colorful">Sage &amp; Sand</option></select><button class="icon-button compact" id="copyButton" type="button" title="Copy current slide as Markdown">⧉</button></div>
+        <div class="slide-stage" id="slideStage"><article class="slide theme-minimal" id="slidePreview" aria-live="polite"></article></div>
+        <div class="slide-navigation"><button class="nav-button" id="prevButton" type="button" aria-label="Previous slide">←</button><span id="slideCounter">Slide 1 of 1</span><button class="nav-button" id="nextButton" type="button" aria-label="Next slide">→</button></div>
+        <div class="thumbnail-heading"><span>SLIDES</span><span id="thumbCount">1 slide</span></div>
+        <div class="thumbnails" id="thumbnails" aria-label="Slide thumbnails"></div>
+      </section>
+    </div>
+    <div class="editor-bottom-note"><span>⌘ / Ctrl + S to save</span><span>← → to navigate · F to present · Esc to exit</span></div>
+  </main>
+
+  <div class="presentation-overlay" id="presentation" aria-hidden="true">
+    <div class="present-top"><a class="brand" href="index.html"><span class="brand-mark">f.</span><span>forma</span></a><span id="presentProjectName">Untitled presentation</span><button class="icon-button" id="exitPresentButton" type="button" aria-label="Exit presentation">✕</button></div>
+    <div class="present-slide-wrap"><article class="slide present-slide theme-minimal" id="presentSlide"></article></div>
+    <div class="present-bottom"><span id="presentCounter">1 / 1</span><div class="present-controls"><button class="nav-button" id="presentPrev" type="button" aria-label="Previous slide">←</button><button class="nav-button" id="presentNext" type="button" aria-label="Next slide">→</button></div><span>Press Esc to exit</span></div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
